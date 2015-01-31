@@ -1390,6 +1390,42 @@ describe("regexp checks", function() {
             expect(is.any.usZipCode(['1', '2'])).to.be.false;
         });
     });
+    describe("is.jaZipCode", function() {
+        it("should return true if given value is JP zip code", function() {
+            expect(is.jaZipCode('175-0093')).to.be.true;
+        });
+        it("should return false if given value is not JP zip code", function() {
+            expect(is.jaZipCode('1')).to.be.false;
+        });
+    });
+    describe("is.not.jaZipCode", function() {
+        it("should return false if given value is JP zip code", function() {
+            expect(is.not.jaZipCode('175-0093')).to.be.false;
+        });
+        it("should return true if given value is not JP zip code", function() {
+            expect(is.not.jaZipCode('1')).to.be.true;
+        });
+    });
+    describe("is.all.jaZipCode", function() {
+        it("should return true if all given values are JP zip code", function() {
+            expect(is.all.jaZipCode('175-0093', '1750093')).to.be.true;
+            expect(is.all.jaZipCode(['175-0093', '1750093'])).to.be.true;
+        });
+        it("should return false if any given value is not JP zip code", function() {
+            expect(is.all.jaZipCode('175-0093', '1')).to.be.false;
+            expect(is.all.jaZipCode(['1750093', '1'])).to.be.false;
+        });
+    });
+    describe("is.any.jaZipCode", function() {
+        it("should return true if any given value is JP zip code", function() {
+            expect(is.any.jaZipCode('175-0093', '1')).to.be.true;
+            expect(is.any.jaZipCode(['1750093', '1'])).to.be.true;
+        });
+        it("should return false if all given values are not JP zip code", function() {
+            expect(is.any.jaZipCode('1', '2')).to.be.false;
+            expect(is.any.jaZipCode(['1', '2'])).to.be.false;
+        });
+    });
     describe("is.caPostalCode", function() {
         it("should return true if given value is Canada postal code", function() {
             expect(is.caPostalCode('L8V3Y1')).to.be.true;
